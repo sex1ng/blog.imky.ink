@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="6417992f-2888-4617-acd3-c8268bf3edb2" name="alicloud" url="http://blog.imky.ink">
+        <fileTransfer rootFolder="/data/wwwroot/wordpress" accessType="SFTP" host="139.196.220.167" port="22" sshConfigId="4a498d14-5aa2-4345-8065-9e0eefce6543" sshConfig="root@139.196.220.167:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
