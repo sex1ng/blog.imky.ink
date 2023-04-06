@@ -1848,10 +1848,37 @@ body.menu-active .ori-footer {
 
 .response-anno:not(:empty) {
   margin-bottom: 0.5rem;
-  background: rgba(255, 255, 255, 0.6);
-  border: 0.1rem solid #ddd;
   padding: 0.2rem 0.6rem;
   border-radius: 0.3rem;
+  background-size: 0 auto;
+  background-image: linear-gradient(rgba(123, 115, 243, 0.6), rgba(123, 115, 243, 0.6));
+  background-repeat: no-repeat;
+  background-position: top left;
+  animation: annomove 5s infinite;
+  animation-direction: alternate;
+  -webkit-animation: annomove 5s infinite;
+  -webkit-animation-direction: alternate;
+}
+
+@keyframes annomove/*response-anno动画*/
+{
+  0%   {background-size: 0px auto;background-position: top left;}
+  50%  {background-size: 100% auto;background-position: top left;}
+  51%  {background-size: 100% auto;background-position: top right;}
+  100% {background-size: 0px auto;background-position: top right;}
+}
+
+@-webkit-keyframes annomove/*response-anno动画safari*/
+{
+  0%   {background-size: 0px auto;background-position: top left;}
+  50%  {background-size: 100% auto;background-position: top left;}
+  51%  {background-size: 100% auto;background-position: top right;}
+  100% {background-size: 0px auto;background-position: top right;}
+}
+
+#response-submit {
+  background: #5755d9;
+  color: #FFF;
 }
 
 .response-title {
