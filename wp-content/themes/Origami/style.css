@@ -884,6 +884,10 @@ body.menu-active .ori-footer {
     color: #fff;
 }
 
+@font-face {
+    font-family: "Montserrat";
+    src: url("fonts/Montserrat-SemiBold.otf");
+}
 .carousel-content h1 {
     font-size: 3rem;
     font-family: "Montserrat";
@@ -1356,6 +1360,12 @@ body.menu-active .ori-footer {
 }
 
 .sidebar-widget.widget_recent_entries .post-date {
+    line-height: 1.2rem;
+    color: #bcc3ce;
+    font-size: 80%;
+    font-weight: 400;
+}
+.sidebar-widget time{
     line-height: 1.2rem;
     color: #bcc3ce;
     font-size: 80%;
