@@ -27,6 +27,7 @@ $body_class .= $GLOBALS['layout'];
   <?php if (get_option('origami_block_mixed', 'true') == 'true') : ?>
     <meta http-equiv="Content-Security-Policy" content="block-all-mixed-content">
   <?php endif; ?>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
 </head>
 
 <body <?php body_class($body_class); ?>>
