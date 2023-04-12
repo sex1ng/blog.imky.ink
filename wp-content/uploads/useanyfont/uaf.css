@@ -1,0 +1,10 @@
+				@font-face {
+					font-family: 'play';
+					src: url('/wp-content/uploads/useanyfont/8170Play.woff2') format('woff2'),
+						url('/wp-content/uploads/useanyfont/8170Play.woff') format('woff');
+					font-weight: 100; font-style: normal; font-display: auto;
+				}
+
+				.play{font-family: 'play' !important;}
+
+		
