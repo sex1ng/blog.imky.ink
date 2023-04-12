@@ -1,19 +1,21 @@
-importScripts(
-    'https://cdn.jsdelivr.net/npm/workbox-cdn@3.6.3/workbox/workbox-sw.js'
-);
-workbox.setConfig({
-    modulePathPrefix: 'https://cdn.jsdelivr.net/npm/workbox-cdn@3.6.3/workbox/',
-    debug: false
-});
+try {
+    importScripts(
+        'https://cdn.jsdelivr.net/npm/workbox-cdn@3.6.3/workbox/workbox-sw.js'
+    );
+    workbox.setConfig({
+        modulePathPrefix: 'https://cdn.jsdelivr.net/npm/workbox-cdn@3.6.3/workbox/',
+        debug: false
+    });
+} catch (e) {
+    console.log(
+        `\n %c Boo! Workbox didn't load 😬 \n`,
+        "color: #fff; background: #FA903E; padding:5px 0;"
+    );
+}
 
 if (workbox) {
     console.log(
-        `\n %c Yay! Workbox is loaded 1 🎉 \n`,
-        "color: #fff; background: #FA903E; padding:5px 0;"
-    );
-} else {
-    console.log(
-        `\n %c Boo! Workbox didn't load 😬 \n`,
+        `\n %c Yay! Workbox is loaded 🎉 \n`,
         "color: #fff; background: #FA903E; padding:5px 0;"
     );
 }
