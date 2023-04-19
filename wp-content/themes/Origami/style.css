@@ -3884,3 +3884,35 @@ body:not(.page):not(.single) #qrcode-btn {
         transform: translate3d(100vw, 0, 0);
     }
 }
+
+.arch_box {
+    border-left: 10px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    padding-left: 10px;
+    padding-bottom: 3px;
+}
+
+.arch_box:hover {
+    border-left: 10px solid #5755d9;
+    border-bottom: 1px solid #5755d9;
+}
+
+.arch_time {
+    font-size: small;
+    float: right;
+    color: gray;
+}
+
+.arch_info {
+    font-size: small;
+    pointer-events: none;
+    color: gray;
+    padding-left: 8px;
+}
+
+.arch_intro {
+    font-size: small;
+    display: block;
+    width: 90%;
+    padding-left: 8px;
+}
