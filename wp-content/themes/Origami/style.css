@@ -60,6 +60,10 @@ a {
     transition: color 0.3s;
 }
 
+a:hover {
+    cursor: url(/wp-content/themes/Origami/image/cur2.cur), pointer;
+}
+
 a:visited {
     color: #5755d9;
 }
@@ -2930,6 +2934,12 @@ body:not(.page):not(.single) #qrcode-btn {
 
 .links-card {
     box-shadow: 0 1px 20px -6px rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.links-card:hover {
+    box-shadow: 0 1px 20px -6px rgba(129, 104, 247, 0.82);
 }
 
 .links-header {
