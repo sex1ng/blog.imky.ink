@@ -140,7 +140,7 @@ $this_year = - 1;
 											<?php if ( $tag_key != 0 ) {
 												echo '/';
 											} ?>
-                                            <a href="https://blog.imzy.ink/tag/<?php echo $tag->slug ?>/" rel="tag">
+                                            <a href="<?php echo get_category_link($tag) ?>" rel="tag">
                                                 <?php echo $tag->name ?>
                                             </a>
 										<?php endforeach; ?>
@@ -160,11 +160,12 @@ $this_year = - 1;
                     <span aria-current="page" class="page-numbers current">1</span>
                 </li>
                 <li class="page-item">
-                    <a class="page-numbers" href="https://blog.imky.ink/archives/page/2/">2</a>
+                    <a class="page-numbers" href="javascript:void(0);">2</a>
                 </li>
                 <li class="page-item">
-                    <a class="next page-numbers" href="https://blog.imky.ink/archives/page/2/">下一页
-                        <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                    <a class="next page-numbers" href="javascript:void(0);">下一页
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                    </a>
                 </li>
             </ul>
 			<?php echo $pagination; ?>
