@@ -55,9 +55,6 @@ if ( $sidebar_pos === 'right' || $sidebar_pos === 'left' ) {
 	$post_list_class = 'col-10 col-md-12';
 	$sidebar_class   = 'col-10 col-md-12';
 }
-if ( get_option( 'origami_timeline_sidebar', 'true' ) != 'true' ) {
-	$sidebar_class = 'd-none';
-}
 
 wp_reset_query();
 
