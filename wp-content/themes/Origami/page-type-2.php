@@ -37,6 +37,32 @@ $post_item      = [
 if ( $post_item['post_image'] == false && origami_get_other_thumbnail( $post ) ) {
 	$post_item['post_image'] = origami_get_other_thumbnail( $post );
 }
+switch ( $post_item['post_title'] ) {
+	case '关于':
+        $post_item['post_description'] = '<h2>关于这里的一切</h2>';
+		break;
+	case '留言墙':
+        $post_item['post_description'] = '<h2>快来说点什么吧</h2>';
+		break;
+	default:
+		$post_item['post_description'] = '<div class="card-subtitle" style="color:white">
+                            <i class="fa fa-calendar"></i>
+                            <time>' . $post_item['post_date'] . '</time>
+                            <i class="fa fa-paper-plane-o"></i>
+                            <span>' . $post_item['post_author'] . '</span>
+                            <i class="fa fa-comment"></i>
+                            <span>' . $post_item['post_comments'] . __( '条评论', 'origami' ) . '</span>
+                            <i class="fa fa-bookmark"></i>
+                            <ul>';
+		foreach ( $post_item['post_category'] as $cat ) :
+			$post_item['post_description'] .= '<li>
+            <a href="' . get_category_link( $cat ) . '">' . get_cat_name( $cat ) . '</a>
+            </li>';
+		endforeach;
+
+		$post_item['post_description'] .= '</ul></div>';
+		break;
+}
 ?>
 <?php get_header(); ?>
 <div id="main-content">
@@ -46,29 +72,8 @@ if ( $post_item['post_image'] == false && origami_get_other_thumbnail( $post ) )
                 <div class="featured-image" style="background-image:url(<?php echo $post_item['post_image']; ?>)"></div>
                 <div class="featured-container">
                     <div class="p-info post-info">
-                        <h2 class="card-title"><?php echo $post_item['post_title']; ?></h2>
-                        <div class="card-subtitle" style="color:white">
-                            <i class="fa fa-calendar"></i>
-                            <time><?php echo $post_item['post_date']; ?></time>
-                            <i class="fa fa-paper-plane-o"></i>
-                            <span><?php echo $post_item['post_author']; ?></span>
-                            <i class="fa fa-comment"></i>
-                            <span>
-                <?php echo $post_item['post_comments'] . __( '条评论', 'origami' ); ?>
-              </span>
-                            <i class="fa fa-bookmark"></i>
-                            <ul>
-								<?php foreach ( $post_item['post_category'] as $cat ) : ?>
-                                    <li>
-                                        <a href="<?php echo get_category_link( $cat ); ?>">
-											<?php echo get_cat_name(
-												$cat
-											); ?>
-                                        </a>
-                                    </li>
-								<?php endforeach; ?>
-                            </ul>
-                        </div>
+                        <h1><?php echo $post_item['post_title']; ?></h1>
+                        <?php echo $post_item['post_description'] ?>
                     </div>
                 </div>
             </div>
