@@ -616,7 +616,7 @@ function origami_content_copyright( $content ) {
 		if ( $select_ccl === 'none' ) {
 			return $content;
 		}
-		$ccl     = [
+		$ccl = [
 			'by'       => '署名标示(BY)',
 			'by-sa'    => '署名标示(BY)-相同方式共享(SA)',
 			'by-nc'    => '署名标示(BY)-非商业性使用(NC)',
@@ -940,7 +940,9 @@ function change_avatar_url( $avatar_url ) {
 	if ( $url != 'false' ) {
 		$avatar_url = preg_replace( "/http:\/\/(www|\d|secure).gravatar.com\/avatar\//", $url, $avatar_url );
 	}
-
+	if (strpos($avatar_url, '&d=identicon')) {
+		$avatar_url = "https://blog.imky.ink/wp-content/uploads/2023/04/lovelive" . rand( 1, 9) . ".jpg";
+	}
 	return $avatar_url;
 }
 
