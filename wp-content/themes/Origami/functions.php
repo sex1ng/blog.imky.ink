@@ -940,13 +940,53 @@ function change_avatar_url( $avatar_url ) {
 	if ( $url != 'false' ) {
 		$avatar_url = preg_replace( "/http:\/\/(www|\d|secure).gravatar.com\/avatar\//", $url, $avatar_url );
 	}
-	if (strpos($avatar_url, '&d=identicon')) {
-		$avatar_url = "https://blog.imky.ink/wp-content/uploads/2023/04/lovelive" . rand( 1, 9) . ".jpg";
-	}
+
 	return $avatar_url;
 }
 
 add_filter( 'get_avatar_url', 'change_avatar_url' );
+
+//修改默认头像
+function default_avatar( $avatar_defaults ) {
+	$avatar                     = 'https://blog.imky.ink/wp-content/uploads/2023/04/lovelive' . rand( 1, 9 ) . '.jpg';
+	$avatar_defaults[ $avatar ] = "LoveLive";
+
+	return $avatar_defaults;
+}
+
+add_filter( 'avatar_defaults', 'default_avatar' );
+
+//获取qq头像
+function q_avatar($q_number): array {
+	$q_email = $q_number . '@qq.com';
+	return [
+		'https://q1.qlogo.cn/g?b=qq&nk=' . $q_number . '&s=640',
+		'https://q2.qlogo.cn/headimg_dl?dst_uin=' . $q_email . '&spec=640',
+		'https://qlogo.store.qq.com/qzone/' . $q_number . '/' . $q_number . '/640',
+		'https://users.qzone.qq.com/fcg-bin/cgi_get_portrait.fcg?uins=' . $q_number,
+		'https://ptlogin2.qq.com/getface?appid=1006102&imgtype=3&uin=' . $q_number
+	];
+}
+
+//根据邮箱判断头像
+function local_random_avatar( $avatar, $id_or_email, $size, $default, $alt ): string {
+	if ( in_array( $default, array( 'mm', 'blank', '', 'identicon', 'wavatar', 'monsterid', 'retro', 'robohash' ) ) ) {
+		return $avatar;
+	}
+	if ( preg_match( '/([1-9][0-9]{4,})@qq.com/', $id_or_email, $result ) ) {
+		$avatar = "https://q1.qlogo.cn/g?b=qq&nk=$result[1]&s=640";
+		return "<img alt='{$alt}' src='{$avatar}' class='avatar avatar-{$size} photo comment-avatar' height='{$size}' width='{$size}' />";
+	} else if (strpos( $avatar, 'gravatar' )) {
+		return $avatar;
+	} else if ( preg_match( '/(\w+)@\w+(\.\w+)/', $id_or_email, $result ) ) {
+		$avatar = "https://blog.imky.ink/wp-content/uploads/2023/04/lovelive" . ( ( ord( substr( $result[1], - 1, 1 ) ) % 9 ) + 1 ) . ".jpg";
+		return "<img alt='{$alt}' src='{$avatar}' class='avatar avatar-{$size} photo comment-avatar' height='{$size}' width='{$size}' />";
+	}
+
+	return $avatar;
+}
+
+add_filter( 'get_avatar', 'local_random_avatar', 1, 5 );
 
 require_once get_template_directory() . '/include/remove.php';
 require_once get_template_directory() . '/include/shortcode.php';
