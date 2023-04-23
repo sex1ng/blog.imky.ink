@@ -161,6 +161,15 @@ if (
                 </ul>
             </div>
         </section>
+        <!-- 评论特效 -->
+        <script src="<?php echo get_template_directory_uri() . '/js/activate-power-mode.js' ?>"></script>
+        <canvas width="1053" height="969"
+                style="position: fixed; top: 0px; left: 0px; pointer-events: none; z-index: 999999;"></canvas>
+        <script>
+            POWERMODE.colorful = true;
+            POWERMODE.shake = false;
+            document.body.addEventListener('input', POWERMODE);
+        </script>
 	<?php endif;
 else :
 	?>
