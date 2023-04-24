@@ -957,8 +957,9 @@ function default_avatar( $avatar_defaults ) {
 add_filter( 'avatar_defaults', 'default_avatar' );
 
 //获取qq头像
-function q_avatar($q_number): array {
+function q_avatar( $q_number ): array {
 	$q_email = $q_number . '@qq.com';
+
 	return [
 		'https://q1.qlogo.cn/g?b=qq&nk=' . $q_number . '&s=640',
 		'https://q2.qlogo.cn/headimg_dl?dst_uin=' . $q_email . '&spec=640',
@@ -975,11 +976,13 @@ function local_random_avatar( $avatar, $id_or_email, $size, $default, $alt ): st
 	}
 	if ( preg_match( '/([1-9][0-9]{4,})@qq.com/', $id_or_email, $result ) ) {
 		$avatar = "https://q1.qlogo.cn/g?b=qq&nk=$result[1]&s=640";
+
 		return "<img alt='{$alt}' src='{$avatar}' class='avatar avatar-{$size} photo comment-avatar' height='{$size}' width='{$size}' />";
-	} else if (strpos( $avatar, 'gravatar' )) {
+	} else if ( strpos( $avatar, 'gravatar' ) ) {
 		return $avatar;
 	} else if ( preg_match( '/(\w+)@\w+(\.\w+)/', $id_or_email, $result ) ) {
 		$avatar = "https://blog.imky.ink/wp-content/uploads/2023/04/lovelive" . ( ( ord( substr( $result[1], - 1, 1 ) ) % 9 ) + 1 ) . ".jpg";
+
 		return "<img alt='{$alt}' src='{$avatar}' class='avatar avatar-{$size} photo comment-avatar' height='{$size}' width='{$size}' />";
 	}
 
@@ -987,6 +990,32 @@ function local_random_avatar( $avatar, $id_or_email, $size, $default, $alt ): st
 }
 
 add_filter( 'get_avatar', 'local_random_avatar', 1, 5 );
+
+//额外样式表引入
+function extra_hook_cascading_style_sheets() {
+	//留言墙音乐播放器
+	if ( is_page( '留言墙' ) ) {
+		?>
+        <link rel="stylesheet" href="<?php echo get_template_directory_uri() . '/css/APlayer.min.css' ?>">
+		<?php
+	}
+}
+
+add_action( 'wp_head', 'extra_hook_cascading_style_sheets' );
+
+//额外脚本引入
+function extra_hook_javascript() {
+	//留言墙音乐播放器
+	if ( is_page( '留言墙' ) ) {
+		?>
+        <!--APlayer-->
+        <script src="<?php echo get_template_directory_uri() . '/js/APlayer.min.js' ?>"></script>
+        <script src="<?php echo get_template_directory_uri() . '/js/Meting.min.js' ?>"></script>
+		<?php
+	}
+}
+
+add_action( 'wp_footer', 'extra_hook_javascript' );
 
 require_once get_template_directory() . '/include/remove.php';
 require_once get_template_directory() . '/include/shortcode.php';
