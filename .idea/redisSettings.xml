@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RedisConfiguration">
+    <option name="serverConfigurations">
+      <list>
+        <ServerConfiguration>
+          <option name="label" value="wordpress" />
+          <option name="password" value="requirepass" />
+          <option name="sercurityInfo">
+            <SercurityInfo>
+              <option name="sshAdress" value="139.196.220.167" />
+              <option name="sshPassword" value="ALI.zsx.0529" />
+              <option name="sshUsePassword" value="true" />
+              <option name="sshUser" value="root" />
+              <option name="useSSH" value="true" />
+            </SercurityInfo>
+          </option>
+          <option name="serverUrl" value="139.196.220.167:6379" />
+          <option name="userName" value="default" />
+        </ServerConfiguration>
+      </list>
+    </option>
+  </component>
+</project>
