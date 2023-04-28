@@ -4123,3 +4123,112 @@ body:not(.page):not(.single) #qrcode-btn {
     background-color: rgba(0, 0, 0, 0.7);
     transition: all 0.25s ease-in-out;
 }
+
+.game-hoderns {
+    width: 200px;
+    height: 200px;
+    margin: 40px 80px;
+    display: inline-block;
+    float: left;
+    color: #FFFFFF;
+    box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+    transition: all 0.25s ease-out;
+    position: relative;
+    background: #4a4a4a;
+    border-radius: 10px;
+}
+
+.game-hoderns:hover {
+    box-shadow: 15px 10px 20px rgba(0, 0, 0, 0.6);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.game-hoderns:hover:before {
+    left: 150px;
+    transition: all 0.25s ease;
+}
+
+.game-hoderns:before {
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 100%;
+    top: 0;
+    left: 255px;
+    z-index: 20;
+    overflow: hidden;
+    transition: all 0.25s ease;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(50%, rgba(255, 255, 255, .2)), color-stop(100%, rgba(255, 255, 255, .1)));
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, .2) 5%, rgba(255, 255, 255, .3) 50%, rgba(255, 255, 255, .1) 100%);
+    background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, .2) 5%, rgba(255, 255, 255, .3) 50%, rgba(255, 255, 255, .1) 100%);
+    background: -o-linear-gradient(left, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, .2) 5%, rgba(255, 255, 255, .3) 50%, rgba(255, 255, 255, .1) 100%);
+    -webkit-transform: skewX(30deg);
+    -moz-transform: skewX(30deg);
+    transform: skewX(30deg);
+}
+
+.game-hoderns:hover .game-coverns {
+    -webkit-filter: blur(3px) brightness(60%);
+    -moz-filter: blur(3px) brightness(60%);
+    -ms-filter: blur(3px) brightness(60%);
+    -o-filter: blur(3px) brightness(60%);
+    filter: blur(3px) brightness(60%);
+}
+
+.game-coverns {
+    width: 200px;
+    height: 200px;
+    float: left;
+    top: 0;
+    left: 0;
+    -webkit-filter: blur(0px) brightness(100%);
+    -moz-filter: blur(0px) brightness(100%);
+    -ms-filter: blur(0px) brightness(100%);
+    -o-filter: blur(0px) brightness(100%);
+    filter: blur(0px) brightness(100%);
+    background-repeat: no-repeat;
+    background-position: center center;
+    transition: all 0.25s ease-in;
+}
+
+.game-hoderns:hover .game-namens {
+    opacity: 1;
+}
+
+.game-namens {
+    width: 200px;
+    height: 100px;
+    position: relative;
+    top: -120px;
+    left: 0;
+    text-align: center;
+    opacity: 0;
+    float: left;
+    z-index: 10;
+    transition: all 0.25s ease-in-out;
+}
+
+.game-hoderns:hover .price-blockns {
+    top: -150px;
+    box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.8);
+}
+
+.price-blockns {
+    width: 200px;
+    height: 50px;
+    position: relative;
+    top: -100px;
+    left: 0;
+    text-align: center;
+    color: #FFFFFF;
+    padding-top: 10px;
+    font-size: 16px;
+    z-index: 10;
+    float: left;
+    background-color: rgba(0, 0, 0, 0.7);
+    transition: all 0.25s ease-in-out;
+}
