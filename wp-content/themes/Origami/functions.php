@@ -978,8 +978,9 @@ function local_random_avatar( $avatar, $id_or_email, $size, $default, $alt ): st
 		$avatar = "https://q1.qlogo.cn/g?b=qq&nk=$result[1]&s=640";
 
 		return "<img alt='{$alt}' src='{$avatar}' class='avatar avatar-{$size} photo comment-avatar' height='{$size}' width='{$size}' />";
+	} else if ( strpos( $avatar, 'gravatar' ) ) {
+		return $avatar;
 	} else if ( preg_match( '/(\w+)@\w+(\.\w+)/', $id_or_email, $result ) ) {
-        var_dump("(\w+)");
 		$avatar = wp_upload_dir()['baseurl'] . "/2023/04/lovelive" . ( ( ord( substr( $result[1], - 1, 1 ) ) % 9 ) + 1 ) . ".jpg";
 
 		return "<img alt='{$alt}' src='{$avatar}' class='avatar avatar-{$size} photo comment-avatar' height='{$size}' width='{$size}' />";
