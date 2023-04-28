@@ -978,15 +978,15 @@ function local_random_avatar( $avatar, $id_or_email, $size, $default, $alt ): st
 		$avatar = "https://q1.qlogo.cn/g?b=qq&nk=$result[1]&s=640";
 
 		return "<img alt='{$alt}' src='{$avatar}' class='avatar avatar-{$size} photo comment-avatar' height='{$size}' width='{$size}' />";
-	} else if ( strpos( $avatar, 'gravatar' ) ) {
-		return $avatar;
 	} else if ( preg_match( '/(\w+)@\w+(\.\w+)/', $id_or_email, $result ) ) {
-		$avatar = "https://blog.imky.ink/wp-content/uploads/2023/04/lovelive" . ( ( ord( substr( $result[1], - 1, 1 ) ) % 9 ) + 1 ) . ".jpg";
+        var_dump("(\w+)");
+		$avatar = wp_upload_dir()['baseurl'] . "/2023/04/lovelive" . ( ( ord( substr( $result[1], - 1, 1 ) ) % 9 ) + 1 ) . ".jpg";
 
 		return "<img alt='{$alt}' src='{$avatar}' class='avatar avatar-{$size} photo comment-avatar' height='{$size}' width='{$size}' />";
-	}
-
-	return $avatar;
+	} else {
+        $avatar = wp_upload_dir()['baseurl'] . "/2023/04/lovelive2.jpg";
+		return "<img alt='{$alt}' src='{$avatar}' class='avatar avatar-{$size} photo comment-avatar' height='{$size}' width='{$size}' />";
+    }
 }
 
 add_filter( 'get_avatar', 'local_random_avatar', 1, 5 );
