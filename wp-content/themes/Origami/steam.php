@@ -79,17 +79,17 @@ if ( ! $post_item['post_image'] && origami_get_other_thumbnail( $post ) ) {
 
 get_header();
 
-require_once get_template_directory() . '/api/Steam.php';
+require_once get_template_directory() . '/api/SteamController.php';
 
-$steam = new Steam();
+$steam = new SteamController();
 
-$steam_user_info      = $steam->getSteamUserInfo();
-$steam_user_level     = $steam->getSteamUserLevel();
+$steam_user_info      = $steam->getGamerInfo();
+$steam_user_level     = $steam->getGamerLevel();
 $steam_default_image  = $steam->getSteamCardImage();
-$steam_recent_play    = $steam->getSteamRecentPlay();
-$steam_inventory      = $steam->getSteamInventory();
-$steam_index_page_uri = $steam->getSteamIndexPageUri();
-$steam_app_price      = $steam->getSteamAppPrice();
+$steam_recent_play    = $steam->getGamerRecentPlay();
+$steam_inventory      = $steam->getGamerInventory();
+$steam_index_page_uri = $steam->getGamerIndexPageUri();
+$steam_app_price      = $steam->getGamesAppPrice();
 
 ?>
 <div id="main-content">

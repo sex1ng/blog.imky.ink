@@ -1,8 +1,9 @@
 <?php
 
-require_once get_template_directory() . '/api/Common.php';
+require_once get_template_directory() . '/api/CommonController.php';
+require_once get_template_directory() . '/interface/GamesInterface.php';
 
-class Steam extends Common {
+class SteamController extends CommonController implements GamesInterface {
 	public string $apikey = 'C56CCF5590BA7DDC8F1634286231C498';
 	public string $steamID = '76561198362785158';
 
@@ -59,7 +60,7 @@ class Steam extends Common {
 	 * @return mixed
 	 * @throws RedisException
 	 */
-	public function getSteamUserInfo() {
+	public function getGamerInfo() {
 		$redis = $this->getRedisInstance();
 		if ( ! $redis->hExists( 'player', 'steamid' ) ) {
 			$url    = 'https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/';
@@ -82,7 +83,7 @@ class Steam extends Common {
 	 * @return mixed
 	 * @throws RedisException
 	 */
-	public function getSteamUserLevel() {
+	public function getGamerLevel() {
 		$redis = $this->getRedisInstance();
 		if ( ! $redis->exists( 'player_level' ) ) {
 			$url    = 'https://api.steampowered.com/IPlayerService/GetSteamLevel/v1/';
@@ -106,7 +107,7 @@ class Steam extends Common {
 	 * @return mixed
 	 * @throws RedisException
 	 */
-	public function getSteamRecentPlay() {
+	public function getGamerRecentPlay() {
 		$redis = $this->getRedisInstance();
 		if ( ! $redis->hExists( 'recent_game_1', 'appid' ) ) {
 			$url    = 'https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v1/';
@@ -148,7 +149,7 @@ class Steam extends Common {
 	 * @return mixed
 	 * @throws RedisException
 	 */
-	public function getSteamInventory() {
+	public function getGamerInventory() {
 		$redis = $this->getRedisInstance();
 		if ( ! ( $redis->sCard( 'inventory' ) > 0 ) ) {
 			$url    = 'https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/';
@@ -198,7 +199,7 @@ class Steam extends Common {
 	 * @return mixed
 	 * @throws RedisException
 	 */
-	public function getSteamAppPrice() {
+	public function getGamesAppPrice() {
 		$redis = $this->getRedisInstance();
 		if ( ! $redis->exists( 'price_overview' ) ) {
 			$url    = 'https://store.steampowered.com/api/appdetails/';
@@ -236,7 +237,7 @@ class Steam extends Common {
 	/**
 	 * @return string
 	 */
-	public function getSteamIndexPageUri(): string {
+	public function getGamerIndexPageUri(): string {
 		return 'https://steamcommunity.com/profiles/76561198362785158/games/?tab=all';
 	}
 

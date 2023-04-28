@@ -1,6 +1,6 @@
 <?php
 
-class Common {
+class CommonController {
 
 	/**
 	 * @var Redis
