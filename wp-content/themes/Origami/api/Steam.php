@@ -1,8 +1,8 @@
 <?php
 
-require_once get_template_directory() . '/Common.php';
+require_once get_template_directory() . '/api/Common.php';
 
-class SteamApi extends Common {
+class Steam extends Common {
 	public string $apikey = 'C56CCF5590BA7DDC8F1634286231C498';
 	public string $steamID = '76561198362785158';
 

@@ -52,10 +52,6 @@ if ( $sidebar_pos === 'right' || $sidebar_pos === 'left' ) {
 	$main_class      = '';
 }
 
-if ( get_option( 'origami_links_sidebar', 'true' ) != 'true' ) {
-	$sidebar_class = 'd-none';
-}
-
 wp_reset_query();
 
 the_post();
@@ -83,6 +79,18 @@ if ( ! $post_item['post_image'] && origami_get_other_thumbnail( $post ) ) {
 
 get_header();
 
+require_once get_template_directory() . '/api/Steam.php';
+
+$steam = new Steam();
+
+$steam_user_info      = $steam->getSteamUserInfo();
+$steam_user_level     = $steam->getSteamUserLevel();
+$steam_default_image  = $steam->getSteamCardImage();
+$steam_recent_play    = $steam->getSteamRecentPlay();
+$steam_inventory      = $steam->getSteamInventory();
+$steam_index_page_uri = $steam->getSteamIndexPageUri();
+$steam_app_price      = $steam->getSteamAppPrice();
+
 ?>
 <div id="main-content">
 	<?php if ( get_option( 'origami_featured_pages_post_type', 'false' ) != 'true' ) : ?>
@@ -95,21 +103,6 @@ get_header();
 	<?php endif; ?>
     <main class="ori-container columns <?php echo $main_class; ?> grid-md">
         <section class="timeline-list column <?php echo $post_list_class; ?>">
-			<?php
-
-			require_once get_template_directory() . '/SteamApi.php';
-
-			$steam = new SteamApi();
-
-			$steam_user_info      = $steam->getSteamUserInfo();
-			$steam_user_level     = $steam->getSteamUserLevel();
-			$steam_default_image  = $steam->getSteamCardImage();
-			$steam_recent_play    = $steam->getSteamRecentPlay();
-			$steam_inventory      = $steam->getSteamInventory();
-			$steam_index_page_uri = $steam->getSteamIndexPageUri();
-			$steam_app_price      = $steam->getSteamAppPrice();
-
-			?>
             <article style="display: flex; justify-content: space-around; flex-wrap: wrap;"
 				<?php post_class( 'p-content' ); ?> id="post-<?php the_ID(); ?>">
                 <div class="user-cover">
