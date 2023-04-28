@@ -97,73 +97,17 @@ get_header();
         <section class="timeline-list column <?php echo $post_list_class; ?>">
 			<?php
 
-			/**
-			 * Todo：Steam Web Api
-			 */
-			class SteamApi {
-				public string $apikey = 'C56CCF5590BA7DDC8F1634286231C498';
-				public string $steamID = '76561198362785158';
-				public string $steamImg = 'https://cdn.akamai.steamstatic.com/steam/apps/753/header.jpg';
-
-				public function curl( string $url, string $method = 'get', array $params = [], array $body = [] ) {
-					$method     = trim( $method );
-					$queryParam = '';
-					if ( ! empty( $params ) ) {
-						foreach ( $params as $key => $value ) {
-							if ( empty( $queryParam ) ) {
-								$symbol = '?';
-							} else {
-								$symbol = '&';
-							}
-							$queryParam .= "{$symbol}{$key}=$value";
-						}
-					}
-					$curl = curl_init();
-					curl_setopt( $curl, CURLOPT_URL, $url . "{$queryParam}" );
-					curl_setopt( $curl, CURLOPT_RETURNTRANSFER, 1 );
-					if ( $method == 'post' ) {
-						curl_setopt( $curl, CURLOPT_POST, 1 );
-						curl_setopt( $curl, CURLOPT_POSTFIELDS, $body );
-					}
-					$response = curl_exec( $curl );
-					$code     = curl_getinfo( $curl, CURLINFO_HTTP_CODE );
-					curl_close( $curl );
-
-					return json_decode( $response, true );
-				}
-
-				public function getSteamUserInfo() {
-					$url    = 'https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/';
-					$method = 'get';
-					$params = [
-						'key'      => $this->apikey,
-						'steamids' => $this->steamID
-					];
-
-					$result = $this->curl( $url, $method, $params );
-
-					return $result['response']['players'][0];
-				}
-
-				public function getSteamUserLevel() {
-					$url    = 'https://api.steampowered.com/IPlayerService/GetSteamLevel/v1/';
-					$method = 'get';
-					$params = [
-						'key'     => $this->apikey,
-						'steamid' => $this->steamID
-					];
-
-					$result = $this->curl( $url, $method, $params );
-
-					return $result['response'];
-				}
-			}
+			require_once get_template_directory() . '/SteamApi.php';
 
 			$steam = new SteamApi();
 
-			$steam_user_info     = $steam->getSteamUserInfo();
-			$steam_user_level    = $steam->getSteamUserLevel();
-			$steam_default_image = $steam->steamImg;
+			$steam_user_info      = $steam->getSteamUserInfo();
+			$steam_user_level     = $steam->getSteamUserLevel();
+			$steam_default_image  = $steam->getSteamCardImage();
+			$steam_recent_play    = $steam->getSteamRecentPlay();
+			$steam_inventory      = $steam->getSteamInventory();
+			$steam_index_page_uri = $steam->getSteamIndexPageUri();
+			$steam_app_price      = $steam->getSteamAppPrice();
 
 			?>
             <article style="display: flex; justify-content: space-around; flex-wrap: wrap;"
@@ -182,38 +126,43 @@ get_header();
                     <div class="apista" title="实时状态" style="color: #454545">
                         上次在线<?php echo date( 'H小时i分钟', $steam_user_info['lastlogoff'] ) ?>前
                     </div>
-                    <span class="apilvl">LeveL <?php echo $steam_user_level['player_level'] ?></span>
-                    <div class="showgame" id="recentplay" style="display: none;">
-                        <div class="gamebox" title="">
-                            <img src="<?php echo $steam_default_image ?>" alt="" style="cursor: zoom-in;">
-                        </div>
-                        <div class="gamebox" title="">
-                            <img src="<?php echo $steam_default_image ?>" alt="" style="cursor: zoom-in;">
-                        </div>
+                    <span class="apilvl">LeveL&nbsp;<?php echo $steam_user_level['player_level'] ?></span>
+                    <div class="showgame" id="recentplay">
+						<?php foreach ( $steam_recent_play['games'] as $key => $value ) : ?>
+                            <div class="gamebox" title="">
+                                <img src="<?php echo $value['image_src'] ?>" alt="" style="cursor: zoom-in;"
+                                     onerror="this.src='<?php echo $steam_default_image ?>'">
+                            </div>
+						<?php endforeach; ?>
                     </div>
                 </div>
 				<?php the_content(); ?>
                 <div style="display: block; width: 100%; height: 80px;">
                     <hr>
-                    <h2 id="title-0">玩过的就这么几个(82/1199)</h2>
+                    <h2 id="title-0">游戏展柜(<?php echo $steam_inventory['game_count'] ?>/167)</h2>
                 </div>
-                <div class="game-hoder">
-                    <div class="game-cover"
-                         style="background-image: url(https://media.st.dl.eccdnx.com/steam/apps/270880/library_600x900.jpg);"></div>
-                    <div class="game-name">
-                        <div class="game-title">American Truck Simulator</div>
+				<?php foreach ( $steam_inventory['games'] as $key => $value ) : ?>
+                    <div class="game-hoder">
+                        <div class="game-cover" style="background-image:url(<?php echo $value['bg_img'] ?>);"></div>
+                        <div class="game-name">
+                            <div class="game-title"><?php echo $value['name'] ?></div>
+                        </div>
+                        <a href="<?php echo $value['shop_url'] ?>" target="_blank"
+                           rel="external nofollow noopener noreferrer" title="<?php echo $value['name'] ?>">
+                            <div class="price-block"><?php
+								echo $steam_app_price[ $value['appid'] ]['data']['price_overview']['initial_formatted']
+									?: $steam_app_price[ $value['appid'] ]['data']['price_overview']['final_formatted']
+										?: '¥ 00.00'
+								?></div>
+                        </a>
                     </div>
-                    <a href="https://store.steampowered.com/app/270880/" target="_blank"
-                       rel="external nofollow noopener noreferrer" title="American Truck Simulator">
-                        <div class="price-block">￥99</div>
-                    </a>
-                </div>
+				<?php endforeach; ?>
                 <div class="game-hoder" style="background: #000000;">
-                    <div class="game-cover" style="background-image: url(/wp-content/uploads/steam/logo.png);"></div>
+                    <div class="game-cover" style="background-image: url(/wp-content/uploads/2023/04/logo.png);"></div>
                     <div class="game-name">
                         <div class="game-title"></div>
                     </div>
-                    <a href="" target="_blank"
+                    <a href="<?php echo $steam_index_page_uri ?>" target="_blank"
                        rel="external nofollow noopener noreferrer" title="我的Steam主页">
                         <div class="price-block">全部库存</div>
                     </a>

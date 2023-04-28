@@ -195,7 +195,7 @@ figure {
     font-size: 2rem;
     height: 4rem;
     width: 4rem;
-    border: 4px solid hsla(0,0%,100%,.4);
+    border: 4px solid hsla(0, 0%, 100%, .4);
     transition: all .3s;
 }
 
@@ -899,6 +899,7 @@ body.menu-active .ori-footer {
     font-family: "Montserrat";
     src: url("fonts/Montserrat-SemiBold.otf");
 }
+
 .carousel-content h1 {
     font-size: 3rem;
     font-family: "Montserrat";
@@ -1376,7 +1377,8 @@ body.menu-active .ori-footer {
     font-size: 80%;
     font-weight: 400;
 }
-.sidebar-widget time{
+
+.sidebar-widget time {
     line-height: 1.2rem;
     color: #bcc3ce;
     font-size: 80%;
@@ -4026,6 +4028,50 @@ body:not(.page):not(.single) #qrcode-btn {
     border-radius: 10px;
 }
 
+.game-hoder:before {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 100%;
+    top: 0;
+    left: 350px;
+    z-index: 20;
+    overflow: hidden;
+    transition: all 0.25s ease;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(50%, rgba(255, 255, 255, .2)), color-stop(100%, rgba(255, 255, 255, .1)));
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, .2) 5%, rgba(255, 255, 255, .3) 50%, rgba(255, 255, 255, .1) 100%);
+    background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, .2) 5%, rgba(255, 255, 255, .3) 50%, rgba(255, 255, 255, .1) 100%);
+    background: -o-linear-gradient(left, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, .2) 5%, rgba(255, 255, 255, .3) 50%, rgba(255, 255, 255, .1) 100%);
+    -webkit-transform: skewX(60deg);
+    -moz-transform: skewX(60deg);
+    transform: skewX(60deg);
+}
+
+.game-hoder:hover {
+    box-shadow: 15px 10px 20px rgba(0, 0, 0, 0.6);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.game-hoder:hover .game-cover {
+    -webkit-filter: blur(3px) brightness(60%);
+    -moz-filter: blur(3px) brightness(60%);
+    -ms-filter: blur(3px) brightness(60%);
+    -o-filter: blur(3px) brightness(60%);
+    filter: blur(3px) brightness(60%);
+}
+
+.game-hoder:hover .game-name {
+    opacity: 1;
+}
+
+.game-hoder:hover .price-block {
+    top: -150px;
+    box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.8);
+}
+
 .game-cover {
     width: 200px;
     height: 300px;
@@ -4074,6 +4120,6 @@ body:not(.page):not(.single) #qrcode-btn {
     font-size: 20px;
     z-index: 10;
     float: left;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0, 0, 0, 0.7);
     transition: all 0.25s ease-in-out;
 }

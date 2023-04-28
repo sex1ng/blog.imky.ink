@@ -21,7 +21,8 @@
     "require": {
         "php": ">=7.4.0",
       "ext-json": "*",
-      "ext-curl": "*"
+      "ext-curl": "*",
+      "ext-redis": "*"
     },
     "require-dev": {
         "satooshi/php-coveralls": ">=0.6",
