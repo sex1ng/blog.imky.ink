@@ -82,7 +82,8 @@ require_once get_template_directory() . '/api/SwitchController.php';
 
 $switch = new SwitchController();
 
-$switchIframeUri = $switch->getSwitchIframeHtml();
+$switch_iframe_uri = $switch->getSwitchIframeHtml();
+$gamer_inventory   = $switch->getGamerInventory();
 
 ?>
 <div id="main-content">
@@ -100,23 +101,25 @@ $switchIframeUri = $switch->getSwitchIframeHtml();
 				<?php post_class( 'p-content' ); ?> id="post-<?php the_ID(); ?>">
                 <iframe style="border: none; display: block; margin: 0 auto; overflow: hidden;"
                         frameborder="no" width="100%" height="320px"
-                        src="<?php echo $switchIframeUri ?>">
+                        src="<?php echo $switch_iframe_uri ?>">
                 </iframe>
 				<?php the_content(); ?>
-                <div style="width: 100%;height: 80px;">
+                <div style="width: 100%; height: 80px;">
                     <h2 id="title-0">收藏卡带</h2>
                 </div>
-                <div class="game-hoderns" style="background: #595959;">
-                    <div class="game-coverns"
-                         style="background: url(https://blog.imky.ink/wp-content/uploads/2023/04/ds.jpg) 0% 0% / cover;"></div>
-                    <div class="game-namens">
-                        <div class="game-titlens">集合啦！动物森友会</div>
+				<?php foreach ( $gamer_inventory as $value ) : ?>
+                    <div class="game-hoderns" style="background: #595959;">
+                        <div class="game-coverns"
+                             style="background: url(<?php echo $value['bg_url'] ?>) 0% 0% / cover;"></div>
+                        <div class="game-namens">
+                            <div class="game-titlens"><?php echo $value['name'] ?></div>
+                        </div>
+                        <a href="<?php echo $value['shop_url'] ?>" target="_blank"
+                           rel="external nofollow noopener noreferrer" title="<?php echo $value['name'] ?>">
+                            <div class="price-blockns">查看</div>
+                        </a>
                     </div>
-                    <a href="https://www.nintendo.co.jp/switch/acbaa/index.html" target="_blank"
-                       rel="external nofollow noopener noreferrer" title="集合啦！动物森友会">
-                        <div class="price-blockns">查看</div>
-                    </a>
-                </div>
+				<?php endforeach; ?>
             </article>
             <div class="p-comments">
 				<?php comments_template(); ?>

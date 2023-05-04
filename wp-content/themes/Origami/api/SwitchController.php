@@ -10,7 +10,19 @@ class SwitchController extends CommonController implements GamesInterface {
 	}
 
 	public function getGamerInventory() {
-		// TODO: Implement getGamerInventory() method.
+
+		return [
+			[
+				'name'     => '集合啦！动物森友会',
+				'bg_url'   => 'https://blog.imky.ink/wp-content/uploads/2023/04/ds.jpg',
+				'shop_url' => 'https://www.nintendo.co.jp/switch/acbaa/index.html',
+			],
+			[],
+			[],
+			[],
+			[],
+			[],
+		];
 	}
 
 	public function getSwitchIframeHtml(): string {
