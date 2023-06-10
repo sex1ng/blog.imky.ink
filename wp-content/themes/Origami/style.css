@@ -4232,3 +4232,112 @@ body:not(.page):not(.single) #qrcode-btn {
     background-color: rgba(0, 0, 0, 0.7);
     transition: all 0.25s ease-in-out;
 }
+
+a.zhuifItem {
+    line-height: 20px;
+    white-space: nowrap;
+    margin: 10px;
+    float: left;
+    overflow: hidden;
+    display: block;
+    padding: 0% 1% 0% 0%;
+    height: 110px;
+    color: #5755d9;
+    text-decoration: none;
+}
+@media all and (orientation: portrait) {
+    /*竖屏样式*/
+    a.zhuifItem {
+        width: 100%;
+    }
+}
+@media all and (orientation: landscape) {
+    /*横屏样式*/
+    a.zhuifItem {
+        width: 46%;
+    }
+}
+a.zhuifItem:before {
+    content: "";
+    position: absolute;
+    width: 80px;
+    height: 100%;
+    top: 0;
+    left: 450px;
+    z-index: 20;
+    overflow: hidden;
+    transition: all 0.25s ease-out;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255,255,255,0)), color-stop(50%, rgba(255,255,255,.5)), color-stop(100%, rgba(255,255,255,0)));
+    background: -webkit-linear-gradient(left, rgba(255,255,255,0)0, rgba(255,255,255,.3)25%, rgba(255,255,255,.5)50%, rgba(255,255,255,.3)75%, rgba(255,255,255,0)100%);
+    background: -moz-linear-gradient(left, rgba(255,255,255,0)0, rgba(255,255,255,.3)25%, rgba(255,255,255,.5)50%, rgba(255,255,255,.3)75%, rgba(255,255,255,0)100%);
+    background: -o-linear-gradient(left, rgba(255,255,255,0)0, rgba(255,255,255,.3)25%, rgba(255,255,255,.5)50%, rgba(255,255,255,.3)75%, rgba(255,255,255,0)100%);
+    -webkit-transform: skewX(60deg);
+    -moz-transform: skewX(60deg);
+    transform: skewX(60deg);
+}
+a.zhuifItem:hover:before {
+    left: -190px;
+    transition: all 0.5s ease-out;
+}
+a.zhuifItem img {
+    pointer-events: none;
+    height: 105px;
+    width: 74px;
+    float: left;
+    border-radius: 6px;
+    box-shadow: 2px 2px 5px #AAA;
+    background-repeat: no-repeat;
+    object-fit: cover;
+}
+a.zhuifItem .zhuiftext {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    height: 40px;
+    font-size: 14px;
+    padding: 5px 0px 0px 7px;
+    line-height: 125%;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    color:#222222;
+}
+a.zhuifItem .zhuiftext1 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    font-size: 18px;
+    padding: 2px 0px 0px 7px;
+    color:#222222;
+    height: 24px;
+}
+a.zhuifItem .zhuiftext2 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    font-size: 12px;
+    padding: 5px 0px 0px 7px;
+    color:#999999;
+    line-height:17px;
+}
+.zhuifline {
+    height: 4px;
+    width: 70%;
+    overflow: hidden;
+    position: relative;
+    left: 8px;
+    background-color: rgba(87, 85, 217, .25);
+    border-radius: 2px;
+}
+.zhuifline1 {
+    position: relative;
+    top: 1px;
+    left: 2px;
+    height: 2px;
+    background-color: #5755d9;
+    border-radius: 1px;
+}
