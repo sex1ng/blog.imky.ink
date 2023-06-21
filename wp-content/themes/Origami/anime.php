@@ -3,6 +3,7 @@
 /**
  * Template Name: Anime
  */
+$paged = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
 if ( have_posts() ) {
 	$post_list = [];
 	while ( have_posts() ) {
@@ -30,6 +31,7 @@ if ( have_posts() ) {
 		$post_list[] = $post_item;
 	}
 }
+$pagination = origami_pagination( false );
 $count = wp_count_posts()->publish;
 
 $sidebar_pos = get_option( 'origami_layout_sidebar', 'right' );
@@ -82,7 +84,6 @@ require_once get_template_directory() . '/api/AnimeController.php';
 
 $anime = new AnimeController();
 
-$want_to_watch   = $anime->getWantToWatch();
 $anime_inventory = $anime->getGamerInventory();
 
 ?>
@@ -101,62 +102,48 @@ $anime_inventory = $anime->getGamerInventory();
 				<?php post_class( 'p-content' ); ?> id="post-<?php the_ID(); ?>">
 				<?php the_content(); ?>
                 <div style="width: 100%; height: 80px;">
-                    <h2 id="title-0">在看</h2>
-                </div>
-				<?php foreach ( $want_to_watch as $value ): ?>
-                    <a href="<?php echo $value['url'] ?>" target="_blank" rel="external nofollow noopener noreferrer"
-                       class="zhuifItem" style="background: none;" title="<?php echo $value['title'] ?>">
-                        <img src="<?php echo $value['img'] ?>"
-                             onerror="this.src='/wp-content/uploads/2023/06/error.jpg'" style="cursor: zoom-in;" alt="">
-                        <div class="zhuiftext1"><?php echo $value['title'] ?></div>
-                        <div class="zhuifline">
-                            <div class="zhuifline1" style="width: calc(<?php echo $value['progress'] ?>% - 4px)"></div>
-                        </div>
-                        <div class="zhuiftext">
-							<?php echo $value['description'] ?>
-                        </div>
-                        <div class="zhuiftext2">
-							<?php echo $value['type'] ?>
-                            &nbsp;&nbsp;|&nbsp;&nbsp;
-							<?php echo $value['project'] ?>
-                            &nbsp;&nbsp;|&nbsp;&nbsp;
-							<?php echo $value['date'] ?>
-                            <br>
-							<?php echo $value['been_episode'] ?>
-                            &nbsp;&nbsp;|&nbsp;&nbsp;
-							<?php echo $value['all_episode'] ?>
-                        </div>
-                    </a>
-				<?php endforeach; ?>
-                <div style="width: 100%; height: 80px;">
                     <h2 id="title-0">追番</h2>
                 </div>
 				<?php foreach ( $anime_inventory as $value ): ?>
-                    <a href="<?php echo $value['url'] ?>" target="_blank" rel="external nofollow noopener noreferrer"
-                       class="zhuifItem" style="background: none;" title="<?php echo $value['title'] ?>">
-                        <img src="<?php echo $value['img'] ?>"
+                    <a href="<?php echo $value->anime_website ?>" target="_blank" rel="external nofollow noopener noreferrer"
+                       class="zhuifItem" style="background: none;" title="<?php echo $value->anime_title ?>">
+                        <img src="<?php echo $value->anime_image ?>"
                              onerror="this.src='/wp-content/uploads/2023/06/error.jpg'" style="cursor: zoom-in;" alt="">
-                        <div class="zhuiftext1"><?php echo $value['title'] ?></div>
+                        <div class="zhuiftext1"><?php echo $value->anime_title ?></div>
                         <div class="zhuifline">
-                            <div class="zhuifline1" style="width: calc(<?php echo $value['progress'] ?>% - 4px)"></div>
+                            <div class="zhuifline1" style="width: calc(<?php echo $value->anime_schedule ?>% - 4px)"></div>
                         </div>
                         <div class="zhuiftext">
-							<?php echo $value['description'] ?>
+							<?php echo $value->anime_description ?>
                         </div>
                         <div class="zhuiftext2">
-							<?php echo $value['type'] ?>
+							<?php echo $value->anime_type ?>
                             &nbsp;&nbsp;|&nbsp;&nbsp;
-							<?php echo $value['project'] ?>
+							<?php echo $value->anime_creator ?>
                             &nbsp;&nbsp;|&nbsp;&nbsp;
-							<?php echo $value['date'] ?>
+							<?php echo $value->anime_date ?>
                             <br>
-							<?php echo $value['been_episode'] ?>
+							<?php echo $value->anime_status ?>
                             &nbsp;&nbsp;|&nbsp;&nbsp;
-							<?php echo $value['all_episode'] ?>
+							<?php echo $value->anime_episode ?>
                         </div>
                     </a>
 				<?php endforeach; ?>
             </article>
+            <ul class="pagination">
+                <li class="page-item">
+                    <span aria-current="page" class="page-numbers current">1</span>
+                </li>
+                <li class="page-item">
+                    <a class="page-numbers" href="javascript:void(0);">2</a>
+                </li>
+                <li class="page-item">
+                    <a class="next page-numbers" href="javascript:void(0);">下一页
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </li>
+            </ul>
+	        <?php echo $pagination; ?>
             <div class="p-comments">
 				<?php comments_template(); ?>
             </div>
