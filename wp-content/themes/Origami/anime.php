@@ -31,7 +31,6 @@ if ( have_posts() ) {
 		$post_list[] = $post_item;
 	}
 }
-$pagination = origami_pagination( false );
 $count = wp_count_posts()->publish;
 
 $sidebar_pos = get_option( 'origami_layout_sidebar', 'right' );
@@ -84,7 +83,9 @@ require_once get_template_directory() . '/api/AnimeController.php';
 
 $anime = new AnimeController();
 
-$anime_inventory = $anime->getGamerInventory();
+$anime_inventory = $anime->getGamerInventory( $paged );
+
+$pagination = origami_pagination( false );
 
 ?>
 <div id="main-content">
@@ -105,13 +106,15 @@ $anime_inventory = $anime->getGamerInventory();
                     <h2 id="title-0">追番</h2>
                 </div>
 				<?php foreach ( $anime_inventory as $value ): ?>
-                    <a href="<?php echo $value->anime_website ?>" target="_blank" rel="external nofollow noopener noreferrer"
+                    <a href="<?php echo $value->anime_website ?>" target="_blank"
+                       rel="external nofollow noopener noreferrer"
                        class="zhuifItem" style="background: none;" title="<?php echo $value->anime_title ?>">
                         <img src="<?php echo $value->anime_image ?>"
                              onerror="this.src='/wp-content/uploads/2023/06/error.jpg'" style="cursor: zoom-in;" alt="">
                         <div class="zhuiftext1"><?php echo $value->anime_title ?></div>
                         <div class="zhuifline">
-                            <div class="zhuifline1" style="width: calc(<?php echo $value->anime_schedule ?>% - 4px)"></div>
+                            <div class="zhuifline1"
+                                 style="width: calc(<?php echo $value->anime_schedule ?>% - 4px)"></div>
                         </div>
                         <div class="zhuiftext">
 							<?php echo $value->anime_description ?>
@@ -130,20 +133,7 @@ $anime_inventory = $anime->getGamerInventory();
                     </a>
 				<?php endforeach; ?>
             </article>
-            <ul class="pagination">
-                <li class="page-item">
-                    <span aria-current="page" class="page-numbers current">1</span>
-                </li>
-                <li class="page-item">
-                    <a class="page-numbers" href="javascript:void(0);">2</a>
-                </li>
-                <li class="page-item">
-                    <a class="next page-numbers" href="javascript:void(0);">下一页
-                        <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                    </a>
-                </li>
-            </ul>
-	        <?php echo $pagination; ?>
+			<?php echo $pagination; ?>
             <div class="p-comments">
 				<?php comments_template(); ?>
             </div>
