@@ -10,6 +10,22 @@
     <option name="highlightLevel" value="WARNING" />
     <option name="transferred" value="true" />
   </component>
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/wp-content/plugins/jetpack-boost/vendor/tedivm/jshrink" />
+      <path value="$PROJECT_DIR$/wp-content/plugins/jetpack-boost/vendor/composer" />
+      <path value="$PROJECT_DIR$/wp-content/plugins/jetpack/vendor/composer" />
+      <path value="$PROJECT_DIR$/wp-content/plugins/jetpack/vendor/nojimage/twitter-text-php" />
+      <path value="$PROJECT_DIR$/wp-content/plugins/jetpack/vendor/automattic/jetpack-plans" />
+      <path value="$PROJECT_DIR$/wp-content/plugins/jetpack/vendor/automattic/jetpack-connection" />
+      <path value="$PROJECT_DIR$/wp-content/plugins/jetpack/vendor/automattic/jetpack-roles" />
+      <path value="$PROJECT_DIR$/wp-content/plugins/jetpack/vendor/automattic/jetpack-backup" />
+      <path value="$PROJECT_DIR$/wp-content/plugins/jetpack/vendor/automattic/jetpack-sync" />
+      <path value="$PROJECT_DIR$/wp-content/plugins/jetpack/vendor/wikimedia/aho-corasick" />
+      <path value="$PROJECT_DIR$/wp-content/plugins/wp-super-cache/vendor/automattic/jetpack-device-detection" />
+      <path value="$PROJECT_DIR$/wp-content/plugins/wp-super-cache/vendor/composer" />
+    </include_path>
+  </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.4">
     <option name="suggestChangeDefaultLanguageLevel" value="false" />
   </component>

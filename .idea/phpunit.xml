@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PHPUnit">
+    <option name="directories">
+      <list>
+        <option value="$PROJECT_DIR$/wp-includes/sodium_compat/tests" />
+        <option value="$PROJECT_DIR$/phpMyAdmin/test/classes" />
+        <option value="$PROJECT_DIR$/phpMyAdmin/test/engines" />
+        <option value="$PROJECT_DIR$/phpMyAdmin/test/libraries/core" />
+        <option value="$PROJECT_DIR$/phpMyAdmin/test/libraries/common" />
+        <option value="$PROJECT_DIR$/phpMyAdmin/test/libraries/rte" />
+        <option value="$PROJECT_DIR$/phpMyAdmin/test/libraries" />
+        <option value="$PROJECT_DIR$/phpMyAdmin/test/selenium" />
+      </list>
+    </option>
+  </component>
+</project>

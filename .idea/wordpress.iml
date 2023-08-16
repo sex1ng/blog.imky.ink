@@ -2,8 +2,27 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/wp-content/plugins/jetpack-boost/./tests/php" isTestSource="true" packagePrefix="Automattic\Jetpack_Boost\Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/phpMyAdmin/test/classes" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/phpMyAdmin/test/engines" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/phpMyAdmin/test/libraries" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/phpMyAdmin/test/libraries/common" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/phpMyAdmin/test/libraries/core" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/phpMyAdmin/test/libraries/rte" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/phpMyAdmin/test/selenium" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/wp-includes/sodium_compat/tests" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/wp-content/plugins/jetpack-boost/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/wp-content/plugins/jetpack-boost/vendor/tedivm/jshrink" />
+      <excludeFolder url="file://$MODULE_DIR$/wp-content/plugins/jetpack/vendor/automattic/jetpack-backup" />
+      <excludeFolder url="file://$MODULE_DIR$/wp-content/plugins/jetpack/vendor/automattic/jetpack-connection" />
+      <excludeFolder url="file://$MODULE_DIR$/wp-content/plugins/jetpack/vendor/automattic/jetpack-plans" />
+      <excludeFolder url="file://$MODULE_DIR$/wp-content/plugins/jetpack/vendor/automattic/jetpack-roles" />
+      <excludeFolder url="file://$MODULE_DIR$/wp-content/plugins/jetpack/vendor/automattic/jetpack-sync" />
+      <excludeFolder url="file://$MODULE_DIR$/wp-content/plugins/jetpack/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/wp-content/plugins/jetpack/vendor/nojimage/twitter-text-php" />
+      <excludeFolder url="file://$MODULE_DIR$/wp-content/plugins/jetpack/vendor/wikimedia/aho-corasick" />
+      <excludeFolder url="file://$MODULE_DIR$/wp-content/plugins/wp-super-cache/vendor/automattic/jetpack-device-detection" />
+      <excludeFolder url="file://$MODULE_DIR$/wp-content/plugins/wp-super-cache/vendor/composer" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -17,11 +17,11 @@ class AnimeController extends CommonController implements GamesInterface {
 		$wp_query->max_num_pages = ceil( $wpdb->get_results(
 				$wpdb->prepare(
 					"SELECT
-							COUNT(*) AS count
-						FROM
-						    wp_animation
-						WHERE
-							`anime_pid` = %d", $pid
+								COUNT(*) AS count
+							FROM
+							    wp_animation
+							WHERE
+								`anime_pid` = %d", $pid
 				)
 			)[0]->count / $limit );
 
