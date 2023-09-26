@@ -83,13 +83,17 @@ require_once get_template_directory() . '/api/SteamController.php';
 
 $steam = new SteamController();
 
-$steam_user_info      = $steam->getGamerInfo();
-$steam_user_level     = $steam->getGamerLevel();
-$steam_default_image  = $steam->getSteamCardImage();
-$steam_recent_play    = $steam->getGamerRecentPlay();
-$steam_inventory      = $steam->getGamerInventory();
-$steam_index_page_uri = $steam->getGamerIndexPageUri();
-$steam_app_price      = $steam->getGamesAppPrice();
+try {
+	$steam_user_info      = $steam->getGamerInfo();
+	$steam_user_level     = $steam->getGamerLevel();
+	$steam_default_image  = $steam->getSteamCardImage();
+	$steam_recent_play    = $steam->getGamerRecentPlay();
+	$steam_inventory      = $steam->getGamerInventory();
+	$steam_index_page_uri = $steam->getGamerIndexPageUri();
+	$steam_app_price      = $steam->getGamesAppPrice();
+} catch ( Exception $e ) {
+	print_r( $e->getMessage() );
+}
 
 ?>
 <div id="main-content">
